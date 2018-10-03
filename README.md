@@ -8,3 +8,5 @@
 * [Google Maps React](https://stackblitz.com/edit/react-rdevxo?file=map.js)
 
 * [How to Create a Animated Sidebar Menu using HTML, CSS & JavaScript.](https://www.youtube.com/watch?v=uWUNZ4u1VLA)
+
+* [Search Menu](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_search_menu)
