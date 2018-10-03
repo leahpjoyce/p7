@@ -8,13 +8,13 @@ const toolbar = props => (
             <div>
                 <DrawerToggleButton  click={props.drawerClickHandler}/>
             </div>
-            <div className="toolbar_logo"><a href="/">THE LOGO</a></div>
+            <div className="toolbar_logo"><a href="/">React + Google Maps API</a></div>
             <div className="spacer"></div>
             <div className="toolbar_navigation-items">
-                <ul>
+                {/* <ul>
                     <li><a href="/">Products</a></li>
                     <li><a href="/">Users</a></li>
-                </ul>
+                </ul> */}
 
             </div>
         </nav>
