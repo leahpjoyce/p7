@@ -3,13 +3,12 @@ import React from 'react';
 import './SideDrawer.css';
 
 const sideDrawer = props => (
-    <nav className="side-drawer">
+    <div className="side-drawer">
         <ul>
-            <li><a href="/">Products</a></li>
-            <li><a href="/">Users</a></li>
-
+            <a href="/">Products</a>
+            <a href="/">Users</a>
         </ul>
-    </nav>
+    </div>
 );
 
 export default sideDrawer;

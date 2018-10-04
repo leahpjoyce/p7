@@ -12,16 +12,18 @@
     height: 100%;
     width: 200px;
     position: fixed;
-    z-index: 1;
-    top: 50px;
-    left: 0px;
+    z-index: 100;
+    /* top: 60px;
+    left: 0px; */
     background-color: white;
     overflow-x: hidden;
-    padding: 8px 0;
+    /* padding: 8px 0; */
+    display: block;
+    flex: 1;
 
 }
 
-.side-drawer ul {
+.side-drawer a {
     /* height: 100%;
     list-style: none;
     display: flex;
@@ -35,20 +37,16 @@
     font-size: 25px;
     color: #818181;
     display: block;
+    overflow-x: hidden;
  
-}
-
-.side-drawer li {
-    margin: 0.5rem 0;
-}
-
-.side-drawer a {
-    color: #521751;
-    text-decoration: none;
-    font-size: 1.2rem;
 }
 
 .side-drawer a:hover,
 .side-drawer a:active {
-    color: #fa923f;
+    color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+    .side-drawer {padding-top: 15px;}
+    .side-drawer a {font-size: 18px;}
 }
