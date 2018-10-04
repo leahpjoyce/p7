@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import logo from './logo.svg';
-//import './App.css';
-// import Map from './components/Map';
+import './App.css';
+ import Map from './components/Map';
 // import Sidebar from './components/SideBar';
 //import Menu from './components/Menu';
 //import ResponsiveSidebar from './components/ResponsiveSidebar';
@@ -39,8 +39,8 @@ class App extends Component {
         <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
         {sideDrawer}
         {backdrop}
-        <main style={{marginTop: '64px'}}>
-          <p>This is the page content!</p>
+        <main className="mapStyle">
+          <Map />
         </main>
       </div>
     );
