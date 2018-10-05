@@ -12,12 +12,17 @@
 
     position:fixed;
     height:100%;
-    width:200px;
+    width:250px;
     top:0;
     left:0;
     right:0;
     background:#fff;
     border-right:2px solid;
+}
+
+h2 {
+    text-align: center;
+    margin: 15px;
 }
 
 #myMenu li {
@@ -30,3 +35,10 @@
 #myMenu li a { 
     text-decoration: none;
 }
+
+.row input[type=text] {
+    padding: 8px;
+    margin-left: 5px;
+    font-size: 17px;
+    border: solid;
+  }

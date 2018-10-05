@@ -7,7 +7,7 @@ class Sidebar extends Component {
         return (
             <div className="row">
                 <div className="left"/>
-                    <h2>Menu</h2>
+                    <h2>Locations</h2>
                     <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category"/>
                     <ul id="myMenu">
                         <li><a href="#">Restaurant</a></li>
