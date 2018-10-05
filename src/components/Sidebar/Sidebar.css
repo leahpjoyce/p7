@@ -18,6 +18,12 @@
     right:0;
     background:#fff;
     border-right:2px solid;
+    /* left: -200px;
+    transition: all 500ms linear; */
+}
+
+.row.active {
+    left: 0px;
 }
 
 h2 {
@@ -42,3 +48,19 @@ h2 {
     font-size: 17px;
     border: solid;
   }
+
+
+  .row .toggle-btn {
+    position: absolute;
+    left: 260px;
+    top: 20px;
+
+}
+
+.row .toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 5px;
+    background: white;
+    margin: 3px 0px;
+}

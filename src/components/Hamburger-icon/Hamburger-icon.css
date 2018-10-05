@@ -1,0 +1,15 @@
+.toggle-btn {
+    position: absolute;
+    right: 100px;
+    top: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 40px;
+    height: 5px;
+    background: white;
+    margin: 3px 0px;
+}
