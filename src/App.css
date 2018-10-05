@@ -1,38 +1,106 @@
 .App {
-  text-align: center;
+    text-align: center;
+  }
+  
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+  }
+  
+  .App-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .App-title {
+    font-size: 1.5em;
+  }
+  
+  .App-intro {
+    font-size: large;
+  }
+  
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  #map {
+          height: 100vh;
+          
+        }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0; 
+  }
+
+  .mapStyle {
+      margin-top: 55px;
+      position: relative;
+  }
+
+  /* ---- Start of Toolbar.css -------*/
+
+  .toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #172752;
+    height: 70px;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.toolbar_navigation {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.toolbar_logo {
+    margin-left: 1rem;
 }
 
-.App-title {
-  font-size: 1.5em;
+.toolbar_logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
-.App-intro {
-  font-size: large;
+.spacer {
+    flex: 1;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.toolbar_navigation-items ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
 }
 
-#map {
-        height: 100vh;
-      }
-/* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+.toolbar_navigation-items li {
+    padding: 0 0.5rem;
 }
+
+.toolbar_navigation-items a{
+    color: white;
+    text-decoration: none;
+}
+
+.toolbar_navigation-items a:hover,
+.toolbar_navigation-items a:active {
+    color: #fa923f;
+}
+
+  /* ---- End of Toolbar.css -------*/
