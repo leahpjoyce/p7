@@ -9,3 +9,16 @@
      color: white;
      text-align: center;
  }
+
+ 
+
+.hidden {
+    -webkit-transform: translate(-300px, 0);
+    transform: translate(-300px, 0);
+    transition: transform 0.3s ease;
+}
+
+#map.full {
+    width: 100%;
+    left: 0;
+  }

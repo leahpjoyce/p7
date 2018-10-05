@@ -1,12 +1,15 @@
 .toggle-btn {
-    position: absolute;
+    /* position: absolute;
     right: 100px;
     top: 40px;
     margin: 0;
-    padding: 0;
-}
+    padding: 0; */
 
-.toggle-btn span {
+    position: relative;
+    float: right;
+    margin-top: 15px;
+}
+ .toggle-btn span {
     display: block;
     width: 40px;
     height: 5px;
