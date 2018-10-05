@@ -1,0 +1,32 @@
+.row {
+    /* height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+    margin-top: 55px; */
+
+    position:fixed;
+    height:100%;
+    width:200px;
+    top:0;
+    left:0;
+    right:0;
+    background:#fff;
+    border-right:2px solid;
+}
+
+#myMenu li {
+    margin: 20px;
+    padding: 20px;
+    list-style: none;
+   
+}
+
+#myMenu li a { 
+    text-decoration: none;
+}
