@@ -39,20 +39,39 @@ class Map extends Component {
     })
   }
 
+
   initMap = () => {
         // Constructor creates a new map - only center and zoom are required.
 
         var map = new window.google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: {lat: -34.397, lng: 150.644}
+          center: {lat: -33.8688, lng: 151.2093},
+          zoom: 12
         })
 
+              
+        //Create Infowindow
+        var infowindow = new window.google.maps.InfoWindow();
+
+        //Display dynamic markers
         this.state.venues.map(myVenue => {
+
+          var contentString = `${myVenue.venue.name}`
+
+          
+          //Create a Marker
           var marker = new window.google.maps.Marker({
             position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
             map: map,
             title: myVenue.venue.name
           }) 
+
+          // Open infowindow
+          marker.addListener('click', function() {
+
+            infowindow.setContent(contentString)
+
+            infowindow.open(map, marker);
+          });
 
         })
             
