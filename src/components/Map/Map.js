@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import './Map.css';
+import axios from 'axios';
 
 class Map extends Component {
 
+  state = {
+    venues: []
+  }
+
   componentDidMount() {
+    this.getVenues();
     this.renderMap();
   }
 
@@ -11,7 +17,28 @@ class Map extends Component {
     this.loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNrXEldAgmH2ozJr9gcUybeoiBJqPI2k&callback=initMap')
     window.initMap = this.initMap
   }
+// Get venues from FourSquare API in React App using Axios
+//Source: https://www.youtube.com/watch?v=dAhMIF0fNpo
 
+  getVenues = () => {
+    const endPoint = "https://api.foursquare.com/v2/venues/explore?"
+    const parameters = {
+      client_id: "TJNBOWFRAENKF0VQSTZ0UNSBW4XHQER3WZJUAZ25JVKS3FXG",
+      client_secret: "3G1K42W4GL4FO2S5H2GQYXVSWIJHTI0UX00F4SF5HZICSVQK",
+      query: "food",
+      near: "Sydney",
+      v: "20180510"
+    }
+    axios.get(endPoint + new URLSearchParams(parameters))
+    .then(response => {
+      this.setState({
+        venues: response.data.response.groups[0].items
+      })
+    })
+    .catch(error => {
+      console.log("ERROR" + error)
+    })
+  }
 
   initMap = () => {
         // Constructor creates a new map - only center and zoom are required.
