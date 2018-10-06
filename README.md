@@ -4,3 +4,5 @@
 * [Position fixed sidebar and centering content](https://stackoverflow.com/questions/43377430/position-fixed-sidebar-and-centering-content)
 * [How to Create a Animated Sidebar Menu using HTML, CSS & JavaScript.](https://www.youtube.com/watch?v=uWUNZ4u1VLA)
 * [Reposition Hamburger Menu CSS](https://stackoverflow.com/questions/37736518/reposition-hamburger-menu-css)
+* [Add Dynamic Markers to Google Maps](https://www.youtube.com/watch?v=nDJ00zO9X2U)
+* [Infowindow on every Marker](https://www.youtube.com/watch?v=_1RjbT5dIeM)

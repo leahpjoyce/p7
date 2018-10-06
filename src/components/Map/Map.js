@@ -5,11 +5,23 @@ import axios from 'axios';
 class Map extends Component {
 
   state = {
-    venues: []
+    venues: [],
+    showingLocations: '',
+    query: '',
+    marker: {},
+    currentMarker: undefined
   }
 
   componentDidMount() {
     this.getVenues();
+  }
+
+  updateQuery = query => {
+    this.setState({ query })
+  }
+
+  onMarkerClick = marker => {
+    this.setState({ currentMarker: marker })
   }
 
   renderMap = () => {
@@ -25,7 +37,7 @@ class Map extends Component {
       client_id: "TJNBOWFRAENKF0VQSTZ0UNSBW4XHQER3WZJUAZ25JVKS3FXG",
       client_secret: "3G1K42W4GL4FO2S5H2GQYXVSWIJHTI0UX00F4SF5HZICSVQK",
       query: "food",
-      near: "Sydney",
+      near: "Indiana",
       v: "20180510"
     }
     axios.get(endPoint + new URLSearchParams(parameters))
@@ -44,8 +56,8 @@ class Map extends Component {
         // Constructor creates a new map - only center and zoom are required.
 
         var map = new window.google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2093},
-          zoom: 12
+          center: {lat: 39.7684, lng: -86.1581},
+          zoom: 11
         })
 
               
@@ -89,6 +101,8 @@ loadScript = (url) => {
 
 
   render() {
+
+    
     return (
       <div id='map'>
         

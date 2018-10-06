@@ -9,29 +9,6 @@ import Sidebar from './components/Sidebar/Sidebar';
 
 class App extends Component {
 
-    constructor() {
-      super();
-      this.state = {
-          venues: [],
-          markers: [],
-          center: [],
-          zoom: 12
-      }
-    }
-
-    componentDidMount() {
-      SquareAPI.search({
-        near: "Austin, TX",
-        query: "tacos",
-        limit: 10
-      }).then(results => {
-        const {venues} = results.response;
-        const {center} = results.response.geocode.feature.geometry;
-        console.log(results)
-      });
-    
-  }
-  
   render() {
     return (
       <div>
