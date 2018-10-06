@@ -1,108 +1,113 @@
 import React, { Component } from 'react';
 import './Map.css';
-import axios from 'axios';
+
 
 class Map extends Component {
+  markers = [];
 
-  state = {
-    venues: [],
-    showingLocations: '',
-    query: '',
-    marker: {},
-    currentMarker: undefined
+  // function to create the map once Google Maps script is loaded
+  onScriptLoad = () => {
+
+      //empty object to use on demand
+      const current = {};
+      this.current = current;
+
+ 
+
+      const infowindow = new window.google.maps.InfoWindow({
+          maxWidth: 300   //establish max-wdith for infowindows, to enhance UX
+      });
+
+
+      this.infowindow = infowindow;
+      
+      // close one infowindow wn another one opens
+      window.google.maps.event.addListener(infowindow, 'closeclick', function () {
+          current.marker = false;
+      });
+
+      window.google.maps.event.addListener(this.map, 'click', function () {
+          current.marker = false;
+          infowindow.close();
+      });
   }
 
-  componentDidMount() {
-    this.getVenues();
-  }
+  // markers method
+  loadmarker = () => {
+      const self = this;
+      const {showingLocations, currentMarker, markerClicked } = this.props;
 
-  updateQuery = query => {
-    this.setState({ query })
-  }
+      console.log('loadmarker');  //DEBUG
 
-  onMarkerClick = marker => {
-    this.setState({ currentMarker: marker })
-  }
+      while (this.markers.length) {
+          this.markers.pop().setMap(null);
+      }
+      console.log(showingLocations); //DEBUG
 
-  renderMap = () => {
-    this.loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNrXEldAgmH2ozJr9gcUybeoiBJqPI2k&callback=initMap')
-    window.initMap = this.initMap
-  }
-// Get venues from FourSquare API in React App using Axios
-//Source: https://www.youtube.com/watch?v=dAhMIF0fNpo
+       //map over the showingLocations array
+      //build a marker and push it into the markers array
+      //when clicking said venue, open infowindow with setup information
+      //else, close the infowindow
+      showingLocations.forEach(configVenue => {
 
-  getVenues = () => {
-    const endPoint = "https://api.foursquare.com/v2/venues/explore?"
-    const parameters = {
-      client_id: "TJNBOWFRAENKF0VQSTZ0UNSBW4XHQER3WZJUAZ25JVKS3FXG",
-      client_secret: "3G1K42W4GL4FO2S5H2GQYXVSWIJHTI0UX00F4SF5HZICSVQK",
-      query: "food",
-      near: "Indiana",
-      v: "20180510"
-    }
-    axios.get(endPoint + new URLSearchParams(parameters))
-    .then(response => {
-      this.setState({
-        venues: response.data.response.groups[0].items
-      }, this.renderMap())
-    })
-    .catch(error => {
-      console.log("ERROR" + error)
-    })
-  }
+          //DESTRUCTURING
+          const position = {
+              lat: configVenue.venue.location.lat,
+              lng: configVenue.venue.location.lng
+          }
 
-
-  initMap = () => {
-        // Constructor creates a new map - only center and zoom are required.
-
-        var map = new window.google.maps.Map(document.getElementById('map'), {
-          center: {lat: 39.7684, lng: -86.1581},
-          zoom: 11
-        })
-
-              
-        //Create Infowindow
-        var infowindow = new window.google.maps.InfoWindow();
-
-        //Display dynamic markers
-        this.state.venues.map(myVenue => {
-
-          var contentString = `${myVenue.venue.name}`
-
-          
-          //Create a Marker
-          var marker = new window.google.maps.Marker({
-            position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
-            map: map,
-            title: myVenue.venue.name
-          }) 
-
-          // Open infowindow
-          marker.addListener('click', function() {
-
-            infowindow.setContent(contentString)
-
-            infowindow.open(map, marker);
+          //define marker
+          const marker = new window.google.maps.Marker({
+              position: position,
+              map: this.map,
+              title: configVenue.venue.name,
+              address: configVenue.venue.location.address,
+              id: configVenue.venue.id,
           });
 
-        })
-            
-      }
+          // push each new marker into the empty array of markers
+          this.markers.push(marker);
 
-  
-loadScript = (url) => {
-    var index = window.document.getElementsByTagName('script')[0];
-    var script = window.document.createElement('script');
-    script.src = url;
-    script.async = true;
-    script.defer = true;
-    index.parentNode.insertBefore(script, index);
+          window.google.maps.event.addListener(marker, 'click', function () {
+              markerClicked(configVenue.venue.id);
+          });
+
+          // show marker infowindow is selected
+          if (currentMarker === configVenue.venue.id){
+              self.current.marker = marker;
+              self.infowindow.setContent(marker.title + ' ' + marker.address);
+              self.infowindow.open(self.map, marker);
+          }
+
+      });
+  }
+
+  //invoke markers method immediately after update occurs, to be able to display them
+  componentDidUpdate() {
+      this.loadmarker();
   }
 
 
-  render() {
+  //When DOM loads, initialize Google Map
+  componentDidMount() {
+      if (!window.google) {
+          const s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNrXEldAgmH2ozJr9gcUybeoiBJqPI2k`;
+          const x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+          // Below is important. 
+          //We cannot access google.maps until it's finished loading
+          s.addEventListener('load', e => {
+              this.onScriptLoad();
+          })
+      } else {
+          this.onScriptLoad();
+      }
+  }
+  
 
-    
+  render() {
     return (
       <div id='map'>
         

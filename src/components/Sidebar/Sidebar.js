@@ -9,12 +9,21 @@ class Sidebar extends Component {
             <div className="row">
                 <div className="left"/>
                     <h2>Locations</h2>
-                    <input type="text" id="mySearch" placeholder="Search.." title="Type in a category"/>
+                    <input type="text" id="mySearch" placeholder="Search.." 
+                     onChange={event => this.props.updateQuery(event.target.value)}
+                    title="Type in a category"/>
                     <ul id="myMenu">
-                        <li><a href="#">Restaurant</a></li>
-                        <li><a href="#">Museum</a></li>
-                        <li><a href="#">Beach</a></li>
-                        <li><a href="#">Tour</a></li>
+                    {this.props.showingLocations.map((venus) =>
+                        <li key={venus.venue.id}
+                        tabIndex='0'
+                        role='menuitem'
+                        aria-label={venus.venue.name + 'click to read more'}
+                        >
+                        <a onClick={() => this.props.markerClicked(venus.venue.id)}>
+                            {venus.venue.name}
+                        </a>
+                        </li>
+                        )}
                     </ul>
                 </div>
           );
