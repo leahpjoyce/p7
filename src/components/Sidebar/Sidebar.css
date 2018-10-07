@@ -6,7 +6,7 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: white;
+  background-color: rgb(0, 191, 255);
   overflow-x: hidden;
   padding-top: 20px;
   }
@@ -65,7 +65,7 @@
       padding-left: 20px;
       color: white;
       list-style: none;
-      background-color: gray;
+ 
     }
   
   #sidebar-list a {
@@ -74,12 +74,13 @@
     padding: 12px; 
     text-decoration: none; 
     font-family: 'Questrial', sans-serif; 
-    text-align: right;
-    font-size: 12px;
+    text-align: center;
+    font-size: 15px;
+    border: 2px solid white;
   }
   
   #sidebar-list a:hover {
-    background-color: burlywood; 
+    background-color: rgb(77, 213, 255); 
     color: black; 
   }
   
