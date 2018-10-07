@@ -1,24 +1,53 @@
 
-  .header {
-    overflow: hidden;
-    background-color: black;
-    padding: 20px 10px;
+/* <<<<<<<<<<<<<< HEADER >>>>>>>>>>>>> */
+
+.header-wrapper {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    color: blue;
+    height: calc(100vh / 6);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
   }
-
- h1 {
-     color: white;
-     text-align: center;
- }
-
- 
-
-.hidden {
-    -webkit-transform: translate(-300px, 0);
-    transform: translate(-300px, 0);
-    transition: transform 0.3s ease;
-}
-
-#map.full {
-    width: 100%;
+  
+  .header-footer, .nav-menu {
+    position: absolute;
+    font-family: 'Questrial', sans-serif;
+    margin: 0px;
+    bottom: 0;
+    color: black;
+  }
+  
+  .nav-menu {
+    font-size: 22px;
     left: 0;
+    padding: 0px 0px 5px 15px;
   }
+  
+  
+  .header-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 52px;
+    margin: 0px;
+    opacity: 0.7;
+    text-shadow: -4px 5px 3px #f44336;
+  }
+  
+  .header-footer {
+    font-size: 14px;
+    right: 0;
+    padding: 0px 10px 5px 0px;
+  }
+  
+  
+.open-button {
+    cursor: pointer;
+    
+  }
+  
+  

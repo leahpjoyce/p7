@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+
+import React, { Component } from 'react'
 import './App.css';
-import SquareAPI from './API';
-import Header from './components/Header/Header';
-import Map from './components/Map/Map';
-import Sidebar from './components/Sidebar/Sidebar';
-import axios from 'axios';
-import escapeRegExp from 'escape-string-regexp';
+import Header from './components/Header/Header'
+import Sidebar from './components/Sidebar/Sidebar'
+import Map from './components/Map/Map'
+
+import axios from 'axios'
+//import sortBy from 'sort-by'
+import escapeRegExp from 'escape-string-regexp'
 
 
 class App extends Component {
@@ -18,8 +20,31 @@ class App extends Component {
     currentMarker: undefined
   }
 
-  componentDidMount() {
-    this.getVenues();
+  getVenues = () => {
+
+    // Foursquare API Information
+    const endPoint = 'https://api.foursquare.com/v2/venues/explore?'
+    const parameters = {
+      client_id: "TJNBOWFRAENKF0VQSTZ0UNSBW4XHQER3WZJUAZ25JVKS3FXG",
+      client_secret: "3G1K42W4GL4FO2S5H2GQYXVSWIJHTI0UX00F4SF5HZICSVQK",
+      query: 'food',
+      near: 'Indiana',
+      v: '20180510'
+    }
+
+    axios.get(endPoint + new URLSearchParams(parameters))
+      .then(response => {
+        this.setState({
+          venues: response.data.response.groups[0].items
+        })
+      })
+      .catch(error => {
+        console.log('Failed in retrieving Foursquare info: ' + error + ' Please try again later!')
+      })
+  }
+
+  componentDidMount(){
+    this.getVenues()
   }
 
   updateQuery = query => {
@@ -41,84 +66,8 @@ class App extends Component {
   }
 
 
-  renderMap = () => {
-    this.loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDCNrXEldAgmH2ozJr9gcUybeoiBJqPI2k&callback=initMap')
-    window.initMap = this.initMap
-  }
-// Get venues from FourSquare API in React App using Axios
-//Source: https://www.youtube.com/watch?v=dAhMIF0fNpo
-
-  getVenues = () => {
-    const endPoint = "https://api.foursquare.com/v2/venues/explore?"
-    const parameters = {
-      client_id: "TJNBOWFRAENKF0VQSTZ0UNSBW4XHQER3WZJUAZ25JVKS3FXG",
-      client_secret: "3G1K42W4GL4FO2S5H2GQYXVSWIJHTI0UX00F4SF5HZICSVQK",
-      query: "food",
-      near: "Indiana",
-      v: "20180510"
-    }
-    axios.get(endPoint + new URLSearchParams(parameters))
-    .then(response => {
-      this.setState({
-        venues: response.data.response.groups[0].items
-      }, this.renderMap())
-    })
-    .catch(error => {
-      console.log("ERROR" + error)
-    })
-  }
-
-
-  initMap = () => {
-        // Constructor creates a new map - only center and zoom are required.
-
-        var map = new window.google.maps.Map(document.getElementById('map'), {
-          center: {lat: 39.7684, lng: -86.1581},
-          zoom: 11
-        })
-
-              
-        //Create Infowindow
-        var infowindow = new window.google.maps.InfoWindow();
-
-        //Display dynamic markers
-        this.state.venues.map(myVenue => {
-
-          var contentString = `${myVenue.venue.name}`
-
-          
-          //Create a Marker
-          var marker = new window.google.maps.Marker({
-            position: {lat: myVenue.venue.location.lat, lng: myVenue.venue.location.lng},
-            map: map,
-            title: myVenue.venue.name
-          }) 
-
-          // Open infowindow
-          marker.addListener('click', function() {
-
-            infowindow.setContent(contentString)
-
-            infowindow.open(map, marker);
-          });
-
-        })
-            
-      }
-
-  
-loadScript = (url) => {
-    var index = window.document.getElementsByTagName('script')[0];
-    var script = window.document.createElement('script');
-    script.src = url;
-    script.async = true;
-    script.defer = true;
-    index.parentNode.insertBefore(script, index);
-  }
-
-
   render() {
-    let showingLocations
+      let showingLocations
 
     if (this.state.query) {
       const match = new RegExp(escapeRegExp(this.state.query, 'i'))
@@ -127,28 +76,33 @@ loadScript = (url) => {
       showingLocations = this.state.venues
     }
 
+    
 
     return (
-      <div>
-     
-        <Header />
-        <Map 
-        showingLocations={showingLocations}
-        markerClicked={this.onMarkerClick}
-        currentMarker={this.state.currentMarker}
-        />
+      <main>
+        <div className='App'>
+          <Header
+            openNavbar={this.openNav}
+          />
         <Sidebar
-        getVenues={this.getVenues}
-        closeNavbar={this.closeNav}
-        venues={this.state.venues}
-        query={this.state.query}
-        showingLocations={showingLocations}
-        updateQuery={this.updateQuery}
-        markerClicked={this.onMarkerClick}
+            getVenues={this.getVenues}
+            closeNavbar={this.closeNav}
+            venues={this.state.venues}
+            query={this.state.query}
+            showingLocations={showingLocations}
+            updateQuery={this.updateQuery}
+            markerClicked={this.onMarkerClick}
         />
-     
-        
-      </div>
+          <section id='map-area' tabIndex='0'>
+          <Map
+            showingLocations={showingLocations}
+            markerClicked={this.onMarkerClick}
+            currentMarker={this.state.currentMarker}
+          />
+          </section>
+   
+        </div>
+      </main>
     );
   }
 }

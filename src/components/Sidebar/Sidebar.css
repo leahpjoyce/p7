@@ -1,66 +1,96 @@
-.row {
-    /* height: 100%;
-    width: 160px;
+
+#navbar {
+    width: 0px;
     position: fixed;
-    z-index: 1;
-    top: 0;
+    display: block;
+    z-index: 1; /* Stay on top */
     left: 0;
-    background-color: white;
+    background-color: gray;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     overflow-x: hidden;
-    padding-top: 20px;
-    margin-top: 55px; */
-
-    position:fixed;
-    height:100%;
-    width:250px;
-    top:0;
-    left:0;
-    right:0;
-    background:#fff;
-    border-right:2px solid;
-    /* left: -200px;
-    transition: all 500ms linear; */
-}
-
-.row.active {
-    left: 0px;
-}
-
-h2 {
-    text-align: center;
-    margin: 15px;
-}
-
-#myMenu li {
-    margin: 20px;
-    padding: 20px;
-    list-style: none;
-   
-}
-
-#myMenu li a { 
-    text-decoration: none;
-}
-
-.row input[type=text] {
-    padding: 8px;
-    margin-left: 5px;
-    font-size: 17px;
-    border: solid;
   }
 
 
-  .row .toggle-btn {
+.sidebar-icon {
+    width: 100px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 25px;
+    margin-left: auto;
+      margin-right: auto;
+      display: block;
+  }
+  
+  .close-button {
     position: absolute;
-    left: 700px;
-    top: 20px;
-
-}
-
-.row .toggle-btn span {
+    top: 0;
+    right: 0;
+    width: 25px;
+    margin-right: 15px;
+    margin-top: 10px;
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 50px; 
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .sidebar-filter {
     display: block;
-    width: 30px;
-    height: 5px;
-    background: white;
-    margin: 3px 0px;
-}
+    width: 150px; /* Set width */
+    height: 25px; /* Set height */
+    border: 3px solid black; /* set query's box border */
+    font-family: 'Questrial', sans-serif; /* set query's box font tamily */
+    text-indent: 10px; /* indent default text in query box in 10px */
+    color: black;
+    margin-left: auto; /* Set ´margin */
+    margin-right: auto; /* Set ´margin */
+    margin-top: 20px; /* Set ´margin */
+    margin-bottom: 20px; /* Set ´margin */
+  }
+  
+  #sidebar-list {
+    height: 358px;    /* Set height */
+    overflow-y: auto; /* Display scroll on y-axis whenever content occupies more than available space */
+    flex: 0 0 200px; /* don't grow, don't shrink, retain width */
+    list-style: none; /* Remove underline from links */
+    margin: 10px;  /* Set ´margin */
+  }
+  
+    /* Nav menu links wrapper */
+    #sidebar-list > ul {
+      height: 100vw; /* Set height */
+      margin: 0; /*Force margin to 0*/
+      padding: 0; /*Force padding to 0*/
+      margin-top: 15px; /* Set ´margin */
+      line-height: 20px;
+      text-align: right;
+      padding-right: 20px;
+      padding-left: 20px;
+      color: white;
+      list-style: none;
+    }
+  
+  #sidebar-list a {
+    color: black; /* White text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+    font-family: 'Questrial', sans-serif; /* set link's font */
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  #sidebar-list a:hover {
+    background-color: white; /* Yellow background on mouse-over */ /*NOT WORKING*/
+    color: black; /* Black text color */
+  }
+  
+  
+.icon-btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100px;
+  } 
+  

@@ -1,47 +1,82 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-  
-  .App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
-  }
-  
-  .App-title {
-    font-size: 1.5em;
-  }
-  
-  .App-intro {
-    font-size: large;
-  }
-  
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
- 
-  /* Optional: Makes the sample page fill the window. */
-  html, body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
 
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0; 
-  }
+html, body {
+  height: 100%;
 
-  .mapStyle {
-      margin-top: 55px;
-      position: relative;
+}
+
+.open-button {
+  cursor: pointer;
+}
+
+.icon-btn-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100px;
+} 
+
+
+/* ------- MEDIA QUERIES --------- */
+
+@media screen and (min-width: 400px) {
+  /* <<<<<<<<<<<<<< MAP >>>>>>>>>>>>> */
+  #quote {
+    margin: 20px;
+    font-size: 14px;
+    font-weight: bold;
   }
+  #sidebar-list {
+    height: 433px;    /* Set height */
+  }
+}
+
+
+@media screen and (min-width: 650px) {
+  .header-footer {
+    font-size: 18px;  
+  }
+  .nav-menu {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 400px and min-height:650px) {
+  #sidebar-list {
+    height: 500px;    /* Set height */
+  }
+}
+
+@media screen and (min-height:750px) {
+  #sidebar-list {
+    height: 490px;    /* Set height */
+  }
+  .sidebar-filter {
+    display: block;
+    width: 180px; /* Set width */
+    height: 35px; /* Set height */
+  } 
+}
+
+@media screen and (max-width:330px) {
+  .header-title {
+    font-size: 40px;
+  }
+  #sidebar-list {
+    height: 295px;    /* Set height */
+  }
+}
+
+@media screen and (min-height:1024px;) {
+  #sidebar-list {
+    height: 500px;    /* Set height */
+  }
+  .sidebar-filter {
+    display: block;
+    width: 180px; /* Set width */
+    height: 35px; /* Set height */
+  }
+}
