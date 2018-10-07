@@ -17,7 +17,7 @@
   
   .header-footer, .nav-menu {
     position: absolute;
-    font-family: 'Questrial', sans-serif;
+    float: right;
     margin: 0px;
     bottom: 0;
     color: black;
@@ -45,8 +45,10 @@
   }
   
   
-.open-button {
+.open-btn {
     cursor: pointer;
+    float: right;
+    
     
   }
   

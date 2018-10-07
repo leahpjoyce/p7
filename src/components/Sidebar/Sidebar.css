@@ -1,13 +1,14 @@
 
 #navbar {
-    width: 0px;
-    position: fixed;
-    display: block;
-    z-index: 1; /* Stay on top */
-    left: 0;
-    background-color: gray;
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    overflow-x: hidden;
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  padding-top: 20px;
   }
 
 
@@ -26,8 +27,8 @@
     top: 0;
     right: 0;
     width: 25px;
-    margin-right: 15px;
-    margin-top: 10px;
+    margin-right: 100px;
+    margin-top: 60px;
     background-color: black;
     border: 2px solid black;
     border-radius: 50px; 
@@ -38,59 +39,60 @@
   
   .sidebar-filter {
     display: block;
-    width: 150px; /* Set width */
-    height: 25px; /* Set height */
-    border: 3px solid black; /* set query's box border */
-    font-family: 'Questrial', sans-serif; /* set query's box font tamily */
-    text-indent: 10px; /* indent default text in query box in 10px */
+    border: 3px solid black; 
+    font-family: 'Questrial', sans-serif; 
+    text-indent: 10px; 
     color: black;
-    margin-left: auto; /* Set ´margin */
-    margin-right: auto; /* Set ´margin */
-    margin-top: 20px; /* Set ´margin */
-    margin-bottom: 20px; /* Set ´margin */
+    margin: auto;
   }
   
   #sidebar-list {
-    height: 358px;    /* Set height */
-    overflow-y: auto; /* Display scroll on y-axis whenever content occupies more than available space */
-    flex: 0 0 200px; /* don't grow, don't shrink, retain width */
-    list-style: none; /* Remove underline from links */
-    margin: 10px;  /* Set ´margin */
+    margin: 10px;
+    padding: 5px;
+    list-style: none;
+
   }
   
     /* Nav menu links wrapper */
     #sidebar-list > ul {
-      height: 100vw; /* Set height */
-      margin: 0; /*Force margin to 0*/
-      padding: 0; /*Force padding to 0*/
-      margin-top: 15px; /* Set ´margin */
+      height: 100vw; 
+      margin: 0; 
+      padding: 0; 
+      margin-top: 15px; 
       line-height: 20px;
       text-align: right;
       padding-right: 20px;
       padding-left: 20px;
       color: white;
       list-style: none;
+      background-color: gray;
     }
   
   #sidebar-list a {
-    color: black; /* White text color */
-    display: block; /* Make the links appear below each other */
-    padding: 12px; /* Add some padding */
-    text-decoration: none; /* Remove underline from links */
-    font-family: 'Questrial', sans-serif; /* set link's font */
+    color: black; 
+    display: block; 
+    padding: 12px; 
+    text-decoration: none; 
+    font-family: 'Questrial', sans-serif; 
     text-align: right;
     font-size: 12px;
   }
   
   #sidebar-list a:hover {
-    background-color: white; /* Yellow background on mouse-over */ /*NOT WORKING*/
-    color: black; /* Black text color */
+    background-color: burlywood; 
+    color: black; 
   }
   
   
 .icon-btn-wrapper {
     display: flex;
     flex-wrap: wrap;
-    height: 100px;
+
   } 
-  
+
+  .nav-bar input[type=text] {
+    padding: 8px;
+    margin-left: 5px;
+    font-size: 17px;
+    border: solid;
+  }

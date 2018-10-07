@@ -6,7 +6,6 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Map from './components/Map/Map'
 
 import axios from 'axios'
-//import sortBy from 'sort-by'
 import escapeRegExp from 'escape-string-regexp'
 
 

@@ -124,6 +124,7 @@ class Map extends Component {
         return (
             <div id='map' role='application'>
             </div>
+
         );
     }
 }
