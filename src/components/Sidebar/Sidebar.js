@@ -5,7 +5,7 @@ class Sidebar extends Component {
   render() {
     //console.log('my props', this.props.venues)
     return (
-      <div id="navbar" className="sidenav" tabIndex='2'>
+      <div id="navbar" className="sidenav" tabIndex='0' role='navigation'>
 
         <div className='nav-header'>
 
@@ -16,7 +16,7 @@ class Sidebar extends Component {
             aria-label='Close sidebar'>x</button> 
           </div>
 
-          <div className='filter' role='filter'>
+          <div className='filter'>
             <input
               className='sidebar-filter'
               type='text'
@@ -29,7 +29,7 @@ class Sidebar extends Component {
 
         </div>
         <nav id='sidebar-list'> 
-          <ul role='menu'>
+          <ul className='ul-list' role='menu'>
             {this.props.showingLocations.map((venus) =>
               <li key={venus.venue.id}
               tabIndex='0'

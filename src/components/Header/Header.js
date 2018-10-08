@@ -4,13 +4,13 @@ import './Header.css';
 //Stateless Functional Component
 const Header = (props) => {
     return (
-        <div className='header-wrapper' role="header-wrapper">
+        <div className='header-wrapper' role='application'>
             <h1>
              React + Google Maps API
             </h1>
             <div className='nav-menu'>
                 <div className='open-btn' 
-                tabindex='1'
+                tabindex='0'
                  onClick={props.hamburgerOpen} 
                  aria-labelledby="Hamburger menu" aria-label='Open Sidebar'>&#9776;
                  </div> 

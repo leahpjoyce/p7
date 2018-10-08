@@ -63,7 +63,6 @@ class App extends Component {
       document.getElementById("navbar").style.width = "0"; 
   }
 
-
   render() {
       let showingLocations
 
@@ -73,9 +72,7 @@ class App extends Component {
     } else {
       showingLocations = this.state.venues
     }
-
-    
-
+ 
     return (
       <main>
         <div className='App'>
@@ -96,7 +93,6 @@ class App extends Component {
             markerClicked={this.onMarkerClick}
             currentMarker={this.state.currentMarker}
           />
-
         </div>
       </main>
     );
