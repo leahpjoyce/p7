@@ -3,33 +3,27 @@ import './Map.css';
 
 class Map extends Component {
 
-    state = {};
     markers = [];
 
-    // function to create the map once Google Maps script is loaded
-    onScriptLoad = () => {
+    onLoad = () => {
 
         //empty object to use on demand
         const current = {};
         this.current = current;
-
-        // DESTRUCTURING
-        let startingPoint = {
-            lat: 39.7684,
-            lng: -86.1581
-
-        };
+ 
 
         //define default attributes and starting point for map
         this.map = new window.google.maps.Map(
             document.getElementById('map'), {
-                center: startingPoint,
+                center: {lat: 39.7684,
+                    lng: -86.1581},
                 zoom: 11
             }
+            
         );
 
         const infowindow = new window.google.maps.InfoWindow({
-            maxWidth: 300   //establish max-wdith for infowindows, to enhance UX
+            maxWidth: 300   
         });
 
 
@@ -47,28 +41,23 @@ class Map extends Component {
     }
 
     // markers method
-    loadmarker = () => {
+    handleClickMarker = () => {
         const self = this;
         const {showingLocations, currentMarker, markerClicked } = this.props;
 
-        console.log('loadmarker');  //DEBUG
-
+   
         while (this.markers.length) {
             this.markers.pop().setMap(null);
         }
-        console.log(showingLocations); //DEBUG
 
-         //map over the showingLocations array
-        //build a marker and push it into the markers array
-        //when clicking said venue, open infowindow with setup information
-        //else, close the infowindow
         showingLocations.forEach(configVenue => {
 
-            //DESTRUCTURING
+         
             const position = {
                 lat: configVenue.venue.location.lat,
                 lng: configVenue.venue.location.lng
             }
+
 
             //define marker
             const marker = new window.google.maps.Marker({
@@ -98,7 +87,7 @@ class Map extends Component {
 
     //invoke markers method immediately after update occurs, to be able to display them
     componentDidUpdate() {
-        this.loadmarker();
+        this.handleClickMarker();
     }
 
 
@@ -113,7 +102,7 @@ class Map extends Component {
             // Below is important. 
             //We cannot access google.maps until it's finished loading
             s.addEventListener('load', e => {
-                this.onScriptLoad();
+                this.onLoad();
             })
         } else {
             this.onScriptLoad();
@@ -122,7 +111,7 @@ class Map extends Component {
 
     render() {
         return (
-            <div id='map' role='application'>
+            <div id='map' role="map">
             </div>
 
         );

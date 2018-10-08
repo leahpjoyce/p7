@@ -1,55 +1,31 @@
-.App {
-  text-align: center;
+
+
+/*-------- Accessibility ---------*/
+
+*:focus {
+  outline: 0;
+  box-shadow: 0 0 10px #EB0486;
+  border-color: #EB0486;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+a:focus {
+  font-weight: bold;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-
-.mapStyle {
-    margin-top: 55px;
-    position: relative;
-}
-
 
 * {
 	box-sizing: border-box;
 	padding: 0;
   margin: 0;
+
   
 }
 
 html, body {
   height: 100%;
+  background-color: rgb(0, 191, 255);
 
 }
 
-
-.open-button {
-  cursor: pointer;
-}
 
 .icon-btn-wrapper {
   display: flex;
@@ -57,12 +33,6 @@ html, body {
   height: 100px;
 } 
 
-
-.hidden {
-  -webkit-transform: translate(-300px, 0);
-  transform: translate(-300px, 0);
-  transition: transform 0.3s ease;
-}
 
 /* ------- MEDIA QUERIES --------- */
 

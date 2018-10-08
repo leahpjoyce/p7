@@ -1,12 +1,11 @@
 
 import React, { Component } from 'react'
 import './App.css';
-import Header from './components/Header/Header'
-import Sidebar from './components/Sidebar/Sidebar'
-import Map from './components/Map/Map'
-
-import axios from 'axios'
-import escapeRegExp from 'escape-string-regexp'
+import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+import Map from './components/Map/Map';
+import axios from 'axios';
+import escapeRegExp from 'escape-string-regexp';
 
 
 class App extends Component {
@@ -18,6 +17,15 @@ class App extends Component {
     marker: {},
     currentMarker: undefined
   }
+
+  componentDidMount(){
+    this.getVenues()
+  }
+
+  updateQuery = query => {
+    this.setState({ query })
+  }
+
 
   getVenues = () => {
 
@@ -42,26 +50,17 @@ class App extends Component {
       })
   }
 
-  componentDidMount(){
-    this.getVenues()
-  }
-
-  updateQuery = query => {
-    this.setState({ query })
-  }
-
+ 
   onMarkerClick = marker => {
     this.setState({ currentMarker: marker })
   }
 
-  openNav()  {
-    document.getElementById("navbar").style.width = "250px";
-    document.getElementById("navbar").focus();
+  openNavigation()  {
+    document.getElementById("navbar").style.width = "200px";
   }
 
-  closeNav() {
-      document.getElementById("navbar").style.width = "0";
-      document.getElementById('map-area').focus();
+  closeNavigation() {
+      document.getElementById("navbar").style.width = "0"; 
   }
 
 
@@ -81,25 +80,23 @@ class App extends Component {
       <main>
         <div className='App'>
           <Header
-            openNavbar={this.openNav}
+            hamburgerOpen={this.openNavigation}
           />
         <Sidebar
             getVenues={this.getVenues}
-            closeNavbar={this.closeNav}
+            hamburgerClose={this.closeNavigation}
             venues={this.state.venues}
             query={this.state.query}
             showingLocations={showingLocations}
             updateQuery={this.updateQuery}
             markerClicked={this.onMarkerClick}
         />
-          <section id='map-area' tabIndex='0'>
           <Map
             showingLocations={showingLocations}
             markerClicked={this.onMarkerClick}
             currentMarker={this.state.currentMarker}
           />
-          </section>
-   
+
         </div>
       </main>
     );
