@@ -10,7 +10,7 @@ const Header = (props) => {
             </h1>
             <div className='nav-menu'>
                 <div className='open-btn' 
-                tabindex='0'
+                tabIndex='0'
                  onClick={props.hamburgerOpen} 
                  aria-labelledby="Hamburger menu" aria-label='Open Sidebar'>&#9776;
                  </div> 
