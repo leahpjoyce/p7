@@ -5,13 +5,14 @@ class Sidebar extends Component {
   render() {
     //console.log('my props', this.props.venues)
     return (
-      <div id="navbar" className="sidenav" tabIndex='0' role='navigation'>
+      <div id="navbar" className="sidenav" role='navigation'>
 
         <div className='nav-header'>
 
           <div className='icon-btn-wrapper'>
   
             <button className='close-button' 
+            tabIndex='0'
             onClick={this.props.hamburgerClose} 
             aria-label='Close sidebar'>x</button> 
           </div>

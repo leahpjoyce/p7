@@ -3,27 +3,32 @@ import './Map.css';
 
 class Map extends Component {
 
+    state = {};
     markers = [];
 
-    onLoad = () => {
+    // function to create the map once Google Maps script is loaded
+    onScriptLoad = () => {
 
         //empty object to use on demand
         const current = {};
         this.current = current;
- 
+
+        // DESTRUCTURING
+        let startingPoint = {
+            lat: 39.7684,
+            lng: -86.1581
+        };
 
         //define default attributes and starting point for map
         this.map = new window.google.maps.Map(
             document.getElementById('map'), {
-                center: {lat: 39.7684,
-                    lng: -86.1581},
+                center: startingPoint,
                 zoom: 11
             }
-            
         );
 
         const infowindow = new window.google.maps.InfoWindow({
-            maxWidth: 300   
+            maxWidth: 300   //establish max-wdith for infowindows, to enhance UX
         });
 
 
@@ -37,27 +42,33 @@ class Map extends Component {
         window.google.maps.event.addListener(this.map, 'click', function () {
             current.marker = false;
             infowindow.close();
+            
         });
     }
 
     // markers method
-    handleClickMarker = () => {
+    loadmarker = () => {
         const self = this;
         const {showingLocations, currentMarker, markerClicked } = this.props;
 
-   
+        console.log('loadmarker');  //DEBUG
+
         while (this.markers.length) {
             this.markers.pop().setMap(null);
         }
+        console.log(showingLocations); //DEBUG
 
+         //map over the showingLocations array
+        //build a marker and push it into the markers array
+        //when clicking said venue, open infowindow with setup information
+        //else, close the infowindow
         showingLocations.forEach(configVenue => {
 
-         
+            //DESTRUCTURING
             const position = {
                 lat: configVenue.venue.location.lat,
                 lng: configVenue.venue.location.lng
             }
-
 
             //define marker
             const marker = new window.google.maps.Marker({
@@ -75,11 +86,14 @@ class Map extends Component {
                 markerClicked(configVenue.venue.id);
             });
 
+            // https://stackoverflow.com/questions/7339200/bounce-a-pin-in-google-maps-once
             // show marker infowindow is selected
             if (currentMarker === configVenue.venue.id){
                 self.current.marker = marker;
                 self.infowindow.setContent(marker.title + ' ' + marker.address);
                 self.infowindow.open(self.map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(function(){ marker.setAnimation(null); }, 750);
             }
 
         });
@@ -87,7 +101,7 @@ class Map extends Component {
 
     //invoke markers method immediately after update occurs, to be able to display them
     componentDidUpdate() {
-        this.handleClickMarker();
+        this.loadmarker();
     }
 
 
@@ -102,7 +116,7 @@ class Map extends Component {
             // Below is important. 
             //We cannot access google.maps until it's finished loading
             s.addEventListener('load', e => {
-                this.onLoad();
+                this.onScriptLoad();
             })
         } else {
             this.onScriptLoad();
@@ -113,7 +127,6 @@ class Map extends Component {
         return (
             <div id='map' role='application'>
             </div>
-
         );
     }
 }
